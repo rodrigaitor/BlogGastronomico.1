@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicias Caseras | Blog Gastronómico</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>Delicias Caseras</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#recetas">Recetas</a></li>
+                <li><a href="#sobre">Sobre mí</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h2>Sabores que cuentan historias</h2>
+                <p>Recetas tradicionales con un toque moderno, hechas con amor y los mejores ingredientes</p>
+                <a href="#recetas" class="btn-primary">Explorar Recetas</a>
+            </div>
+        </section>
+
+        <section id="recetas" class="recipes-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>Recetas Destacadas</h3>
+                    <p>Las favoritas de nuestra comunidad</p>
+                </div>
+                <div class="recipes-grid" id="recipesGrid">
+                    <!-- Tarjeta 1 -->
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&h=400&fit=crop" alt="Pasta Fresca">
+                            <div class="card-category">Italiana</div>
+                        </div>
+                        <div class="card-content">
+                            <h4>Pasta Fresca Casera</h4>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 45 min</span>
+                                <span><i class="fas fa-chart-line"></i> Fácil</span>
+                            </div>
+                            <p>Una receta tradicional de pasta fresca hecha a mano, perfecta para compartir en familia.</p>
+                            <button class="btn-recipe" data-recipe="pasta">Ver Receta Completa</button>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=400&fit=crop" alt="Ensalada Mediterránea">
+                            <div class="card-category">Saludable</div>
+                        </div>
+                        <div class="card-content">
+                            <h4>Ensalada Mediterránea</h4>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 20 min</span>
+                                <span><i class="fas fa-chart-line"></i> Muy Fácil</span>
+                            </div>
+                            <p>Fresca, colorida y llena de nutrientes. La combinación perfecta de sabores mediterráneos.</p>
+                            <button class="btn-recipe" data-recipe="ensalada">Ver Receta Completa</button>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500&h=400&fit=crop" alt="Tarta de Manzana">
+                            <div class="card-category">Postres</div>
+                        </div>
+                        <div class="card-content">
+                            <h4>Tarta de Manzana Casera</h4>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 60 min</span>
+                                <span><i class="fas fa-chart-line"></i> Intermedio</span>
+                            </div>
+                            <p>El postre clásico que nunca falla. Crujiente por fuera, suave por dentro.</p>
+                            <button class="btn-recipe" data-recipe="tarta">Ver Receta Completa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Sobre este espacio</h3>
+                        <p>Delicias Caseras nació del amor por la cocina y el deseo de compartir recetas que unen a las personas. Cada plato cuenta una historia, cada ingrediente tiene un propósito.</p>
+                        <p>Aquí encontrarás recetas probadas, consejos útiles y la inspiración para crear momentos memorables alrededor de la mesa.</p>
+                        <div class="about-signature">
+                            <i class="fas fa-heart"></i>
+                            <span>Con cariño, Chef María</span>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=500&h=500&fit=crop" alt="Chef cocinando">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>¿Tienes alguna pregunta?</h3>
+                    <p>Me encantaría saber de ti</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Tu nombre" required>
+                    <input type="email" placeholder="Tu email" required>
+                    <textarea rows="5" placeholder="Tu mensaje..." required></textarea>
+                    <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>Delicias Caseras</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2024 Delicias Caseras. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para recetas -->
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
