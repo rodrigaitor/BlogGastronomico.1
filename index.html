@@ -2,29 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Delicias Caseras | Blog Gastronómico</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body><header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <i class="fas fa-utensils"></i>
-            <h1>Delicias Caseras</h1>
-        </div>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#recetas">Recetas</a></li>
-            <li><a href="#sobre">Sobre mí</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
-</header>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>Delicias Caseras</h1>
+            </div>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+            <label for="menu-toggle" class="menu-toggle-label">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#recetas">Recetas</a></li>
+                <li><a href="#sobre">Sobre mí</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section id="inicio" class="hero">
@@ -41,10 +43,7 @@
                     <h3>Recetas Destacadas</h3>
                     <p>Las favoritas de nuestra comunidad</p>
                 </div>
-                <div class="recipes-grid" id="recipesGrid">
-
-
-
+                <div class="recipes-grid">
                     <!-- Tarjeta 1 -->
                     <div class="recipe-card">
                         <div class="card-image">
@@ -58,12 +57,19 @@
                                 <span><i class="fas fa-chart-line"></i> Fácil</span>
                             </div>
                             <p>Una receta tradicional de pasta fresca hecha a mano, perfecta para compartir en familia.</p>
-                            <button class="btn-recipe" data-recipe="pasta">Ver Receta Completa</button>
+                            <div class="recipe-details">
+                                <h5>Ingredientes:</h5>
+                                <ul>
+                                    <li>400g de harina de trigo</li>
+                                    <li>4 huevos grandes</li>
+                                    <li>1 cucharada de aceite de oliva</li>
+                                    <li>1 pizca de sal</li>
+                                </ul>
+                                <h5>Preparación:</h5>
+                                <p>Forma un volcán con la harina, agrega los huevos, aceite y sal. Mezcla gradualmente hasta formar una masa homogénea. Amasa por 10 minutos, deja reposar 30 minutos, estira y corta. Cocina en agua con sal por 2-3 minutos.</p>
+                            </div>
                         </div>
                     </div>
-
-
-                    
 
                     <!-- Tarjeta 2 -->
                     <div class="recipe-card">
@@ -78,7 +84,19 @@
                                 <span><i class="fas fa-chart-line"></i> Muy Fácil</span>
                             </div>
                             <p>Fresca, colorida y llena de nutrientes. La combinación perfecta de sabores mediterráneos.</p>
-                            <button class="btn-recipe" data-recipe="ensalada">Ver Receta Completa</button>
+                            <div class="recipe-details">
+                                <h5>Ingredientes:</h5>
+                                <ul>
+                                    <li>Tomates cherry</li>
+                                    <li>Pepino</li>
+                                    <li>Pimiento rojo</li>
+                                    <li>Cebolla morada</li>
+                                    <li>Aceitunas negras</li>
+                                    <li>Queso feta</li>
+                                </ul>
+                                <h5>Preparación:</h5>
+                                <p>Corta todas las verduras en trozos pequeños, mezcla en un bol, agrega las aceitunas y el queso feta. Aliña con aceite de oliva, vinagre balsámico y orégano. Sirve fresco.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -95,7 +113,18 @@
                                 <span><i class="fas fa-chart-line"></i> Intermedio</span>
                             </div>
                             <p>El postre clásico que nunca falla. Crujiente por fuera, suave por dentro.</p>
-                            <button class="btn-recipe" data-recipe="tarta">Ver Receta Completa</button>
+                            <div class="recipe-details">
+                                <h5>Ingredientes:</h5>
+                                <ul>
+                                    <li>200g de harina</li>
+                                    <li>100g de mantequilla</li>
+                                    <li>100g de azúcar</li>
+                                    <li>4 manzanas</li>
+                                    <li>Canela</li>
+                                </ul>
+                                <h5>Preparación:</h5>
+                                <p>Mezcla harina, mantequilla y 50g de azúcar. Refrigera 30 min. Estira la masa en un molde. Coloca las manzanas en láminas, espolvorea con canela y el azúcar restante. Hornea a 180°C por 40 minutos.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,7 +156,7 @@
                     <h3>¿Tienes alguna pregunta?</h3>
                     <p>Me encantaría saber de ti</p>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" action="#" method="POST">
                     <input type="text" placeholder="Tu nombre" required>
                     <input type="email" placeholder="Tu email" required>
                     <textarea rows="5" placeholder="Tu mensaje..." required></textarea>
@@ -151,20 +180,8 @@
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
                 <p>&copy; 2024 Delicias Caseras. Todos los derechos reservados.</p>
-                     <p>Carlos Rodrigo Soto Santos</p>
             </div>
         </div>
     </footer>
-
-    <!-- Modal para recetas -->
-    <div id="recipeModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="modalContent"></div>
-            
-        </div>
-    </div>
-
-    <script src="js/main.js"></script>
 </body>
 </html>
