@@ -1,17 +1,56 @@
-// Menú móvil toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+// Menú móvil toggle - VERSIÓN CORREGIDA
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Verificar que los elementos existen
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            // Cambiar icono del menú (opcional)
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
+    
+    // Cerrar menú al hacer click en un enlace
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', function() {
+            if (navLinks) {
+                navLinks.classList.remove('active');
+                // Restaurar icono de hamburguesa
+                const icon = menuToggle?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
     });
-}
-
-// Cerrar menú al hacer click en un enlace
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+    
+    // Cerrar menú al hacer click fuera de él (en móvil)
+    document.addEventListener('click', function(event) {
+        if (navLinks && navLinks.classList.contains('active')) {
+            const isClickInside = navLinks.contains(event.target) || menuToggle?.contains(event.target);
+            if (!isClickInside) {
+                navLinks.classList.remove('active');
+                const icon = menuToggle?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        }
     });
 });
 
@@ -39,95 +78,111 @@ const recipes = {
     pasta: {
         title: '🍝 Pasta Fresca Casera',
         content: `
-            <h2>Pasta Fresca Casera</h2>
-            <h3>Ingredientes:</h3>
-            <ul>
-                <li>400g de harina de trigo</li>
-                <li>4 huevos grandes</li>
-                <li>1 cucharada de aceite de oliva</li>
-                <li>1 pizca de sal</li>
-            </ul>
-            <h3>Preparación:</h3>
-            <ol>
-                <li>Forma un volcán con la harina en una superficie limpia.</li>
-                <li>Agrega los huevos, aceite y sal en el centro.</li>
-                <li>Mezcla gradualmente hasta formar una masa homogénea.</li>
-                <li>Amasa por 10 minutos hasta que esté suave.</li>
-                <li>Deja reposar 30 minutos cubierta.</li>
-                <li>Estira la masa y corta en la forma deseada.</li>
-                <li>Cocina en agua con sal por 2-3 minutos.</li>
-            </ol>
-            <p><strong>¡Disfruta con tu salsa favorita!</strong></p>
+            <div class="modal-recipe">
+                <h2>🍝 Pasta Fresca Casera</h2>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">📝 Ingredientes:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>400g de harina de trigo</li>
+                        <li>4 huevos grandes</li>
+                        <li>1 cucharada de aceite de oliva</li>
+                        <li>1 pizca de sal</li>
+                    </ul>
+                </div>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">👩‍🍳 Preparación:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>Forma un volcán con la harina en una superficie limpia.</li>
+                        <li>Agrega los huevos, aceite y sal en el centro.</li>
+                        <li>Mezcla gradualmente hasta formar una masa homogénea.</li>
+                        <li>Amasa por 10 minutos hasta que esté suave.</li>
+                        <li>Deja reposar 30 minutos cubierta.</li>
+                        <li>Estira la masa y corta en la forma deseada.</li>
+                        <li>Cocina en agua con sal por 2-3 minutos.</li>
+                    </ol>
+                </div>
+                <p style="margin-top: 20px; font-style: italic; color: var(--primary-color);">✨ ¡Disfruta con tu salsa favorita!</p>
+            </div>
         `
     },
     ensalada: {
         title: '🥗 Ensalada Mediterránea',
         content: `
-            <h2>Ensalada Mediterránea</h2>
-            <h3>Ingredientes:</h3>
-            <ul>
-                <li>Tomates cherry</li>
-                <li>Pepino</li>
-                <li>Pimiento rojo</li>
-                <li>Cebolla morada</li>
-                <li>Aceitunas negras</li>
-                <li>Queso feta</li>
-                <li>Aceite de oliva, vinagre balsámico, orégano</li>
-            </ul>
-            <h3>Preparación:</h3>
-            <ol>
-                <li>Corta todas las verduras en trozos pequeños.</li>
-                <li>Mezcla en un bol grande.</li>
-                <li>Agrega las aceitunas y el queso feta desmenuzado.</li>
-                <li>Aliña con aceite de oliva, vinagre balsámico y orégano.</li>
-                <li>Mezcla suavemente y sirve fresco.</li>
-            </ol>
-            <p><strong>Perfecta para días calurosos!</strong></p>
+            <div class="modal-recipe">
+                <h2>🥗 Ensalada Mediterránea</h2>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">📝 Ingredientes:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Tomates cherry</li>
+                        <li>Pepino</li>
+                        <li>Pimiento rojo</li>
+                        <li>Cebolla morada</li>
+                        <li>Aceitunas negras</li>
+                        <li>Queso feta</li>
+                        <li>Aceite de oliva, vinagre balsámico, orégano</li>
+                    </ul>
+                </div>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">👩‍🍳 Preparación:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>Corta todas las verduras en trozos pequeños.</li>
+                        <li>Mezcla en un bol grande.</li>
+                        <li>Agrega las aceitunas y el queso feta desmenuzado.</li>
+                        <li>Aliña con aceite de oliva, vinagre balsámico y orégano.</li>
+                        <li>Mezcla suavemente y sirve fresco.</li>
+                    </ol>
+                </div>
+                <p style="margin-top: 20px; font-style: italic; color: var(--primary-color);">✨ Perfecta para días calurosos!</p>
+            </div>
         `
     },
     tarta: {
         title: '🍎 Tarta de Manzana Casera',
         content: `
-            <h2>Tarta de Manzana Casera</h2>
-            <h3>Para la masa:</h3>
-            <ul>
-                <li>200g de harina</li>
-                <li>100g de mantequilla fría</li>
-                <li>50g de azúcar</li>
-                <li>1 huevo</li>
-            </ul>
-            <h3>Para el relleno:</h3>
-            <ul>
-                <li>4 manzanas</li>
-                <li>100g de azúcar</li>
-                <li>Canela</li>
-                <li>Jugo de limón</li>
-            </ul>
-            <h3>Preparación:</h3>
-            <ol>
-                <li>Mezcla los ingredientes de la masa y refrigera 30 minutos.</li>
-                <li>Pela y corta las manzanas en láminas finas.</li>
-                <li>Estira la masa y coloca en un molde.</li>
-                <li>Distribuye las manzanas en forma de espiral.</li>
-                <li>Espolvorea con azúcar y canela.</li>
-                <li>Hornea a 180°C por 40 minutos.</li>
-            </ol>
-            <p><strong>Sirve con helado de vainilla!</strong></p>
+            <div class="modal-recipe">
+                <h2>🍎 Tarta de Manzana Casera</h2>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">📝 Para la masa:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>200g de harina</li>
+                        <li>100g de mantequilla fría</li>
+                        <li>50g de azúcar</li>
+                        <li>1 huevo</li>
+                    </ul>
+                </div>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">📝 Para el relleno:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>4 manzanas</li>
+                        <li>100g de azúcar</li>
+                        <li>Canela</li>
+                        <li>Jugo de limón</li>
+                    </ul>
+                </div>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">👩‍🍳 Preparación:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>Mezcla los ingredientes de la masa y refrigera 30 minutos.</li>
+                        <li>Pela y corta las manzanas en láminas finas.</li>
+                        <li>Estira la masa y coloca en un molde.</li>
+                        <li>Distribuye las manzanas en forma de espiral.</li>
+                        <li>Espolvorea con azúcar y canela.</li>
+                        <li>Hornea a 180°C por 40 minutos.</li>
+                    </ol>
+                </div>
+                <p style="margin-top: 20px; font-style: italic; color: var(--primary-color);">✨ Sirve con helado de vainilla!</p>
+            </div>
         `
     }
 };
 
 // Abrir modal con la receta seleccionada
-document.querySelectorAll('.btn-recipe').forEach(button => {
+const recipeButtons = document.querySelectorAll('.btn-recipe');
+recipeButtons.forEach(button => {
     button.addEventListener('click', () => {
         const recipe = button.getAttribute('data-recipe');
         if (recipes[recipe]) {
-            modalContent.innerHTML = `
-                <div class="recipe-modal-content">
-                    <h1>${recipes[recipe].title}</h1>
-                    ${recipes[recipe].content}
-                </div>
-            `;
+            modalContent.innerHTML = recipes[recipe].content;
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -163,18 +218,18 @@ if (contactForm) {
 // Scroll suave y resaltar enlace activo
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
     
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
+        if (window.pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
     
-    navLinks.forEach(link => {
+    navLinksItems.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active');
@@ -197,7 +252,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.recipe-card, .about-content, .contact-form').forEach(el => {
+const animatedElements = document.querySelectorAll('.recipe-card, .about-content, .contact-form');
+animatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'all 0.6s ease';
